@@ -22,6 +22,7 @@ export const FormularioDecodificador = (props) => {
             <br className='apenas-desktop'/>
             <br className='apenas-desktop'/>
             No segundo campo o texto a ser desvendado.
+            <br /><br />
           </p>
         </>
       }

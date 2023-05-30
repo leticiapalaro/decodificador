@@ -18,6 +18,7 @@ export const FormularioCodificador = (props) => {
             <SpanStylesParagrafo>chave especial</SpanStylesParagrafo>.<br /><br />
             Essa chave é como uma senha mágica que será usada para desvendar a mensagem posteriormente.<br /><br />
             Você pode soltar a imaginação e escolher uma chave única - pode ser uma palavra, um texto, um número especial ou até mesmo um emoji divertido! A escolha é sua!
+            <br /><br />
           </p>
         </>
       }
