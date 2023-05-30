@@ -49,8 +49,8 @@ export const Resultado = (props) => {
       /><br /><br />
       <PStyles>Deseja copiar algum conteúdo?</PStyles>
       <ButtonGroup disableElevation variant="contained" aria-label="Disabled elevation buttons">
-        <Button onClick={() => copiarTexto('Chave', props.valueChave)}>Chave</Button>
-        <Button onClick={() => copiarTexto('Mensagem', props.valueMensagem)}>Mensagem</Button>
+        <Button onClick={() => copiarTexto('Chave', `Chave: ${props.valueChave}`)}>Chave</Button>
+        <Button onClick={() => copiarTexto('Mensagem', `Mensagem: ${props.valueMensagem}`)}>Mensagem</Button>
         <Button onClick={() => copiarTexto('Tudo', `Chave: ${props.valueChave}` + "\n" + `Mensagem: ${props.valueMensagem}`)}>Tudo</Button>
       </ButtonGroup>
       <PStyles>{aviso}</PStyles>

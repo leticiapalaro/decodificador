@@ -74,12 +74,8 @@ export const Formulario = (props) => {
       }
 
       if (!chavePreenchida && !mensagemPreenchida) {
-        const focusedInput = document.activeElement
-        if (focusedInput === chaveInputRef.current) {
-          setChave(clipboardData)
-        } else {
-          setTextoAlvo(clipboardData)
-        }
+        const clipboardData = await navigator.clipboard.readText();
+        document.execCommand('insertText', false, clipboardData);
       }
     } catch (error) {
       console.error('Erro ao ler o conteúdo da área de transferência:', error)
@@ -210,7 +206,7 @@ export const Formulario = (props) => {
 
             <div style={{ marginBottom: '5rem' }}>
               <hr /><br />
-              <p>Você pode <br className='apenas-mobile' /><SpanStylesParagrafo>usar o botão de colar <br className='apenas-mobile' />nos dois campos</SpanStylesParagrafo> <br className='apenas-mobile' />se o conteúdo da área de transferência estiver no formato:</p><br /><br className='apenas-mobile' />
+              <p>Você pode <br className='apenas-mobile' /><SpanStylesParagrafo>usar o botão de colar <br className='apenas-mobile' />nos dois campos</SpanStylesParagrafo> <br className='apenas-mobile' />ao mesmo tempo se o conteúdo da área de transferência estiver no formato:</p><br /><br className='apenas-mobile' />
               <div>
                 <p>Chave: chave descrita aqui</p>
                 <p>Mensagem: mensagem descrita aqui</p>
