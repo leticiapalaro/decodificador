@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { GlobalStyle } from './styles/GlobalStyle';
+import FormularioCodificador from "./pages/FormularioCodificador";
+import FormularioDecodificador from "./pages/FormularioDecodificador";
+import DivStyles from "./styles/shared/DivStyles";
 
 function App() {
+  const [mostrarDecodificador, setMostrarDecodificador] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <DivStyles>
+
+      <GlobalStyle />
+
+      {!mostrarDecodificador &&
+        <FormularioCodificador renderizar={setMostrarDecodificador}/>
+      }
+
+      {mostrarDecodificador &&
+        <FormularioDecodificador renderizar={setMostrarDecodificador}/>
+      }
+
+    </DivStyles>
+  )
 }
 
 export default App;
