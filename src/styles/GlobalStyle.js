@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   letter-spacing: 1px;
 
   :root {
+    color-scheme: light;
     --azul-padrao: #1976D2;
     --tom-suave-de-bege: #F7EFE4;
     --tom-acentuado-de-bege: #F8B46E;
