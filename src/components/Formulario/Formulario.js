@@ -173,10 +173,11 @@ export const Formulario = (props) => {
 
             <br /><br />
             {props.textoExplicativo}
-            <hr /><br />
+
             <div style={{marginBottom: '5rem'}}>
               {props.botaoColar &&
                 <>
+                  <hr /><br />
                   <p>Você pode <br className='apenas-mobile'/><SpanStylesParagrafo>usar o botão de colar nos dois campos</SpanStylesParagrafo> <br className='apenas-mobile'/>se o conteúdo da área de transferência estiver no formato:</p><br /><br className='apenas-mobile'/>
                     <div>
                       <p>Chave: chave descrita aqui</p>
