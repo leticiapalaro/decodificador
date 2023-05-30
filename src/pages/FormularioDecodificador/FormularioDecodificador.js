@@ -10,7 +10,6 @@ export const FormularioDecodificador = (props) => {
       regraDeNegocio={(textoAlvo, chave) => CryptoJS.AES.decrypt(textoAlvo, chave).toString(CryptoJS.enc.Utf8)}
       titulo='Decodificador'
       helperText='descriptografado'
-      botaoColar={true}
       textoExplicativo={
         <>
           <h2>Como funciona?</h2><br />

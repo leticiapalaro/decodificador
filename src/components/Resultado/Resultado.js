@@ -1,11 +1,18 @@
 import { Button, ButtonGroup } from "@mui/material"
 import CampoInput from "../CampoInput"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import SpanStylesParagrafo from "../../styles/shared/SpanStyles"
 import PStyles from "../../styles/shared/PStyles"
 
 export const Resultado = (props) => {
   const [aviso, setAviso] = useState('')
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   const copiarTexto = (tipo, texto) => {
     navigator.clipboard.writeText(texto)
@@ -28,14 +35,17 @@ export const Resultado = (props) => {
         label={props.labelChave}
         value={props.valueChave}
         readOnly={true}
-        maxRows={2}
+        multiline={false}
+        maxRows={1}
       /><br /><br />
       <CampoInput
         type='text'
         label={props.labelMensagem}
         value={props.valueMensagem}
         readOnly={true}
+        multiline={true}
         maxRows={15}
+        inputRef={inputRef}
       /><br /><br />
       <PStyles>Deseja copiar algum conteúdo?</PStyles>
       <ButtonGroup disableElevation variant="contained" aria-label="Disabled elevation buttons">

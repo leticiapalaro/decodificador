@@ -1,5 +1,5 @@
 import CampoInput from '../CampoInput'
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import BotaoVoltar from '../BotaoVoltar'
 import Resultado from '../Resultado'
 import PStyles from '../../styles/shared/PStyles'
@@ -46,6 +46,7 @@ const StyledP = styled(PStyles)`
 
 export const Formulario = (props) => {
   const chaveInputRef = useRef(null)
+  const mensagemInputRef = useRef(null)
   const [chave, setChave] = useState('')
   const [textoAlvo, setTextoAlvo] = useState('')
   const [textoResultado, setTextoResultado] = useState('')
@@ -81,18 +82,29 @@ export const Formulario = (props) => {
         }
       }
     } catch (error) {
-      console.error('Erro ao ler o conteúdo da área de transferência:', error);
+      console.error('Erro ao ler o conteúdo da área de transferência:', error)
     }
-  };
+  }
+
+  const handleEnterPress = (event) => {
+    if (event.keyCode === 13) { // Enter key code
+      event.preventDefault()
+      mensagemInputRef.current.focus()
+    }
+  }
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     if (!chave || !textoAlvo) {
-      setMostraErro(true);
-      return;
+      setMostraErro(true)
+      return
     }
-    // regra de negócio = criptografar ou descriptografar, recebido via props
-    const regraDeNegocio = props.regraDeNegocio(textoAlvo, chave)
+    const textoAlvoSemEspacosNoFinal = textoAlvo.trimEnd()
+    const chaveSemEspacosNoFinal = chave.trimEnd()
+
+    // Aplicar a regra de negócio com os valores sem espaços em branco
+    const regraDeNegocio = props.regraDeNegocio(textoAlvoSemEspacosNoFinal, chaveSemEspacosNoFinal)
+
     if (regraDeNegocio) {
       setTextoResultado(regraDeNegocio)
     } else {
@@ -100,7 +112,8 @@ export const Formulario = (props) => {
     }
     setMostraErro(false)
     setMostraResultado(true)
-  };
+  }
+
 
   const resetarCampos = (event) => {
     event.preventDefault()
@@ -125,7 +138,7 @@ export const Formulario = (props) => {
         <StyledSection>
           <form>
             <h1>
-              Bem-vindo(a)<br className='apenas-mobile'/> ao nosso incrível<br />
+              Bem-vindo(a)<br className='apenas-mobile' /> ao nosso incrível<br />
               <strong>{props.titulo}</strong><br />
               de mensagens!
             </h1>
@@ -135,10 +148,12 @@ export const Formulario = (props) => {
               helperText='insira a chave de criptografia'
               label='chave secreta'
               onChange={setChave}
+              onKeyDown={handleEnterPress}
               value={chave}
               readOnly={false}
+              multiline={false}
+              maxRows={1}
               inputRef={chaveInputRef}
-              maxRows={2}
             /><br />
 
             <CampoInput
@@ -146,9 +161,17 @@ export const Formulario = (props) => {
               helperText={`insira o texto a ser ${props.helperText}`}
               label='mensagem'
               onChange={setTextoAlvo}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') {
+                  event.preventDefault()
+                  handleSubmit(event)
+                }
+              }}
               value={textoAlvo}
               readOnly={false}
+              multiline={true}
               maxRows={5}
+              inputRef={mensagemInputRef}
             /><br />
 
             {mostraErro && <StyledP>Preencha todos os campos!</StyledP>}
@@ -165,34 +188,34 @@ export const Formulario = (props) => {
               descricao='Resetar'
             />
 
-            {props.botaoColar &&
-              <BotaoFormularioPrincipal
-                onClick={handlePaste}
-                descricao='Colar'
-            />}
+            <BotaoFormularioPrincipal
+              onClick={handlePaste}
+              descricao='Colar'
+            />
 
             <br /><br />
             {props.textoExplicativo}
 
-            <div style={{marginBottom: '5rem'}}>
-              {props.botaoColar &&
-                <>
-                  <hr /><br />
-                  <p>Você pode <br className='apenas-mobile'/><SpanStylesParagrafo>usar o botão de colar <br className='apenas-mobile'/>nos dois campos</SpanStylesParagrafo> <br className='apenas-mobile'/>se o conteúdo da área de transferência estiver no formato:</p><br /><br className='apenas-mobile'/>
-                    <div>
-                      <p>Chave: chave descrita aqui</p>
-                      <p>Mensagem: mensagem descrita aqui</p>
-                    </div><br /><br className='apenas-mobile'/>
-                  <p>É o mesmo formato utilizado em nossa área de resultados, proveniente do botão de copiar todo conteúdo.</p>
-                </>
-              }
+            <div style={{ marginBottom: '5rem' }}>
+              <hr /><br />
+              <p>Você pode <br className='apenas-mobile' /><SpanStylesParagrafo>usar o botão de colar <br className='apenas-mobile' />nos dois campos</SpanStylesParagrafo> <br className='apenas-mobile' />se o conteúdo da área de transferência estiver no formato:</p><br /><br className='apenas-mobile' />
+              <div>
+                <p>Chave: chave descrita aqui</p>
+                <p>Mensagem: mensagem descrita aqui</p>
+              </div><br /><br className='apenas-mobile' />
+              <p>É o mesmo formato utilizado em nossa área de resultados, proveniente do botão de copiar todo conteúdo.</p>
             </div>
           </form>
         </StyledSection>
       }
 
       {mostraResultado &&
-        <StyledSection>
+        <StyledSection onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            event.preventDefault()
+            resetarFormulario(event)
+          }
+        }}>
 
           <BotaoVoltar
             onClick={resetarFormulario}
