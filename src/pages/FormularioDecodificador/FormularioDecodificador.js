@@ -10,10 +10,11 @@ export const FormularioDecodificador = (props) => {
       regraDeNegocio={(textoAlvo, chave) => CryptoJS.AES.decrypt(textoAlvo, chave).toString(CryptoJS.enc.Utf8)}
       titulo='Decodificador'
       helperText='descriptografado'
+      botaoColar={true}
       textoExplicativo={
         <>
           <h2>Como funciona?</h2><br />
-          <p style={{marginBottom: '5rem'}}>
+          <p>
             Para descriptografar uma mensagem criptografada, é necessário utilizar a mesma <br className='apenas-mobile'/>
             <SpanStylesParagrafo>chave especial</SpanStylesParagrafo> <br className='apenas-mobile'/>
             usada durante a criptografia.<br /><br />
@@ -22,7 +23,7 @@ export const FormularioDecodificador = (props) => {
             <br className='apenas-desktop'/>
             <br className='apenas-desktop'/>
             No segundo campo o texto a ser desvendado.
-          </p>
+          </p><br />
         </>
       }
     />

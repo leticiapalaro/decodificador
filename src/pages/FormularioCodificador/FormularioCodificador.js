@@ -10,15 +10,16 @@ export const FormularioCodificador = (props) => {
       regraDeNegocio={(textoAlvo, chave) => CryptoJS.AES.encrypt(textoAlvo, chave).toString()} //Define se será feita codificação ou decodificação
       titulo='Codificador'
       helperText='criptografado'
+      botaoColar={false}
       textoExplicativo={
         <>
           <h2>Como funciona?</h2><br />
-          <p style={{marginBottom: '5rem'}}>
+          <p>
             Aqui está o segredo: para criptografar a sua mensagem, você precisa escolher uma <br className='apenas-mobile'/>
             <SpanStylesParagrafo>chave especial</SpanStylesParagrafo>.<br /><br />
             Essa chave é como uma senha mágica que será usada para desvendar a mensagem posteriormente.<br /><br />
             Você pode soltar a imaginação e escolher uma chave única - pode ser uma palavra, um texto, um número especial ou até mesmo um emoji divertido!<br />A escolha é sua!
-          </p>
+          </p><br />
         </>
       }
     />

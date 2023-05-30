@@ -5,6 +5,7 @@ import Resultado from '../Resultado'
 import PStyles from '../../styles/shared/PStyles'
 import styled from 'styled-components'
 import BotaoFormularioPrincipal from '../BotaoFormularioPrincipal'
+import SpanStylesParagrafo from '../../styles/shared/SpanStyles'
 
 const StyledSection = styled.section`
   h1, h2 {
@@ -50,6 +51,39 @@ export const Formulario = (props) => {
   const [textoResultado, setTextoResultado] = useState('')
   const [mostraErro, setMostraErro] = useState(false)
   const [mostraResultado, setMostraResultado] = useState(false)
+
+  const handlePaste = async () => {
+    try {
+      const clipboardData = await navigator.clipboard.readText()
+      const lines = clipboardData.split('\n')
+
+      let chavePreenchida = false
+      let mensagemPreenchida = false
+
+      for (const line of lines) {
+        if (line.startsWith('Chave:')) {
+          const chave = line.substring(6).trim()
+          setChave(chave)
+          chavePreenchida = true
+        } else if (line.startsWith('Mensagem:')) {
+          const mensagem = line.substring(9).trim()
+          setTextoAlvo(mensagem)
+          mensagemPreenchida = true
+        }
+      }
+
+      if (!chavePreenchida && !mensagemPreenchida) {
+        const focusedInput = document.activeElement
+        if (focusedInput === chaveInputRef.current) {
+          setChave(clipboardData)
+        } else {
+          setTextoAlvo(clipboardData)
+        }
+      }
+    } catch (error) {
+      console.error('Erro ao ler o conteúdo da área de transferência:', error);
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -131,8 +165,27 @@ export const Formulario = (props) => {
               descricao='Resetar'
             />
 
+            {props.botaoColar &&
+              <BotaoFormularioPrincipal
+                onClick={handlePaste}
+                descricao='Colar'
+            />}
+
             <br /><br />
             {props.textoExplicativo}
+            <hr /><br />
+            <div style={{marginBottom: '5rem'}}>
+              {props.botaoColar &&
+                <>
+                  <p>Você pode <br className='apenas-mobile'/><SpanStylesParagrafo>usar o botão de colar nos dois campos</SpanStylesParagrafo> <br className='apenas-mobile'/>se o conteúdo da área de transferência estiver no formato:</p><br /><br className='apenas-mobile'/>
+                    <div>
+                      <p>Chave: chave descrita aqui</p>
+                      <p>Mensagem: chave descrita aqui</p>
+                    </div><br /><br className='apenas-mobile'/>
+                  <p>É o mesmo formato utilizado em nossa área de resultados, proveniente do botão de copiar todo conteúdo.</p>
+                </>
+              }
+            </div>
           </form>
         </StyledSection>
       }
