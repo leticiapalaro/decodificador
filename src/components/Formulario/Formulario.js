@@ -144,7 +144,7 @@ export const Formulario = (props) => {
             <CampoInput
               type='text'
               helperText={`insira o texto a ser ${props.helperText}`}
-              label='texto'
+              label='mensagem'
               onChange={setTextoAlvo}
               value={textoAlvo}
               readOnly={false}
@@ -180,7 +180,7 @@ export const Formulario = (props) => {
                   <p>Você pode <br className='apenas-mobile'/><SpanStylesParagrafo>usar o botão de colar nos dois campos</SpanStylesParagrafo> <br className='apenas-mobile'/>se o conteúdo da área de transferência estiver no formato:</p><br /><br className='apenas-mobile'/>
                     <div>
                       <p>Chave: chave descrita aqui</p>
-                      <p>Mensagem: chave descrita aqui</p>
+                      <p>Mensagem: mensagem descrita aqui</p>
                     </div><br /><br className='apenas-mobile'/>
                   <p>É o mesmo formato utilizado em nossa área de resultados, proveniente do botão de copiar todo conteúdo.</p>
                 </>

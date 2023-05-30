@@ -19,10 +19,8 @@ export const FormularioDecodificador = (props) => {
             <SpanStylesParagrafo>chave especial</SpanStylesParagrafo> <br className='apenas-mobile'/>
             usada durante a criptografia.<br /><br />
             A chave age como uma senha mágica que permite desvendar a mensagem original.<br /><br />
-            No primeiro campo, insira a sua chave mágica.
-            <br className='apenas-desktop'/>
-            <br className='apenas-desktop'/>
-            No segundo campo o texto a ser desvendado.
+            No primeiro campo, insira a sua chave mágica. <br className='apenas-desktop'/><br className='apenas-desktop'/>
+            No segundo campo a mensagem a ser desvendada.
           </p><br />
         </>
       }
