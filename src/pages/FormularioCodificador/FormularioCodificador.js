@@ -13,7 +13,7 @@ export const FormularioCodificador = (props) => {
       textoExplicativo={
         <>
           <h2>Como funciona?</h2><br />
-          <p style={{marginBottom: '2rem'}}>
+          <p style={{marginBottom: '5rem'}}>
             Aqui está o segredo: para criptografar a sua mensagem, você precisa escolher uma <br className='apenas-mobile'/>
             <SpanStylesParagrafo>chave especial</SpanStylesParagrafo>.<br /><br />
             Essa chave é como uma senha mágica que será usada para desvendar a mensagem posteriormente.<br /><br />
