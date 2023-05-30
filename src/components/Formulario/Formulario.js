@@ -178,7 +178,7 @@ export const Formulario = (props) => {
               {props.botaoColar &&
                 <>
                   <hr /><br />
-                  <p>Você pode <br className='apenas-mobile'/><SpanStylesParagrafo>usar o botão de colar nos dois campos</SpanStylesParagrafo> <br className='apenas-mobile'/>se o conteúdo da área de transferência estiver no formato:</p><br /><br className='apenas-mobile'/>
+                  <p>Você pode <br className='apenas-mobile'/><SpanStylesParagrafo>usar o botão de colar <br className='apenas-mobile'/>nos dois campos</SpanStylesParagrafo> <br className='apenas-mobile'/>se o conteúdo da área de transferência estiver no formato:</p><br /><br className='apenas-mobile'/>
                     <div>
                       <p>Chave: chave descrita aqui</p>
                       <p>Mensagem: mensagem descrita aqui</p>
