@@ -162,9 +162,21 @@ export const Formulario = (props) => {
               label='mensagem'
               onChange={setTextoAlvo}
               onKeyDown={(event) => {
-                if (event.key === 'Enter') {
-                  event.preventDefault()
-                  handleSubmit(event)
+                // if (event.altKey && event.key === 'Enter') {
+                //   event.preventDefault()
+                //   setTextoAlvo((prevTextoAlvo) => prevTextoAlvo + '\n')
+                // } else if (event.key === 'Enter') {
+                //   event.preventDefault()
+                //   handleSubmit(event)
+                // }
+                if (event.key === 'Enter' || event.keyCode === 13) {
+                  if (event.altKey || event.ctrlKey) {
+                    event.preventDefault()
+                    setTextoAlvo((prevTextoAlvo) => prevTextoAlvo + '\n')
+                  } else {
+                    event.preventDefault()
+                    handleSubmit(event)
+                  }
                 }
               }}
               value={textoAlvo}
