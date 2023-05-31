@@ -19,7 +19,7 @@ export const ResultadoMolde = (props) => {
         label='todo conteúdo'
         maxRows={10}
         id='mensagemInput'
-        value={'Chave:' + '\n'  + props.valueChave + '\n\n' + 'Resultado:' + '\n'  + props.valueMensagem}
+        value={'Chave:' + '\n'  + props.valueChave + '\n\n' + 'Mensagem:' + '\n'  + props.valueMensagem}
       />
     </>
   )
