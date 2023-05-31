@@ -2,6 +2,10 @@ import { Button } from "@mui/material"
 import styled from "styled-components"
 import IconeSVG from "../IconeSVG"
 
+const StyledDiv = styled.div`
+  margin: 5rem auto auto auto;
+`
+
 const StyledP = styled.p`
   color: var(--azul-padrao);
   font-weight: bolder;
@@ -10,7 +14,7 @@ const StyledP = styled.p`
 
 export const BotaoVoltar = (props) => {
   return (
-    <div>
+    <StyledDiv>
       <Button onClick={props.onClick}>
         <IconeSVG
           path="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
@@ -18,7 +22,6 @@ export const BotaoVoltar = (props) => {
         />
       </Button>
       <StyledP>Voltar</StyledP>
-      <hr />
-    </div>
+    </StyledDiv>
   )
 }
