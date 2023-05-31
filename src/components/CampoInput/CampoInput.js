@@ -36,21 +36,11 @@ export const CampoInput = (props) => {
   }
 
   const handlePaste = async () => {
-    if (inputRef.current) {
-      inputRef.current.focus()
-      if (navigator.clipboard && navigator.clipboard.readText) {
-        navigator.clipboard.readText()
-          .then((text) => {
-            setValue(`${value} ${text}`)
-          })
-          .catch((error) => {
-            console.error('Erro ao ler conteúdo da área de transferência:', error)
-            setErro('Erro ao ler conteúdo da área de transferência:', error)
-          })
-      } else {
-        console.error('O navegador não suporta a função navigator.clipboard.readText().')
-        setErro('O navegador não suporta a função navigator.clipboard.readText().')
-      }
+    try {
+      const conteudo = await navigator.clipboard.readText()
+      setValue(`${value} ${conteudo}`) // Aqui você pode usar o conteúdo capturado como desejar
+    } catch (error) {
+      setErro('Erro ao capturar conteúdo da área de transferência: o navegador não tem suporte para navigator.clipboard.readText()' + '\n' + error)
     }
   }
 
