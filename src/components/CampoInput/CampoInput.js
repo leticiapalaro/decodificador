@@ -40,7 +40,7 @@ export const CampoInput = (props) => {
       const conteudo = await navigator.clipboard.readText()
       setValue(`${value} ${conteudo}`) // Aqui você pode usar o conteúdo capturado como desejar
     } catch (error) {
-      setErro('Erro ao capturar conteúdo da área de transferência: o navegador não tem suporte para navigator.clipboard.readText()' + '\n' + error)
+      setErro('Erro ao capturar conteúdo da área de transferência: o navegador não tem suporte para navigator.clipboard.readText() - ' + error)
     }
   }
 
